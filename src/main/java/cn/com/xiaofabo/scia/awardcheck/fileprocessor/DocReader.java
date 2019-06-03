@@ -35,6 +35,22 @@ public class DocReader {
         }
 	}
 
+	protected String combineLines(String[] lines, int startIndex, int endIndex) {
+        if (startIndex >= lines.length || endIndex >= lines.length) {
+            return null;
+        }
+        StringBuilder toReturn = new StringBuilder();
+        for (int i = startIndex; i < endIndex; ++i) {
+            if (!removeAllSpaces(lines[i]).isEmpty()) {
+                toReturn.append(lines[i]).append("\n");
+            }
+        }
+        return toReturn.toString();
+    }
+	
+	protected String removeAllSpaces(String input) {
+        return input.replaceAll("\\s+", "");
+    }
 	
 	/// Getters
 	public String getDocText() {
